@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, redirect
 import sqlite3
+from banco import criar_banco
 
 app = Flask(__name__)
 
@@ -237,6 +238,8 @@ def atualizar_status(pedido_id):
 
 
 # ===== INICIAR O SERVIDOR =====
+
+criar_banco()
 
 if __name__ == "__main__":
     app.run(debug=True)

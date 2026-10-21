@@ -1,5 +1,7 @@
 import sqlite3
 
+
+
 def criar_banco():
     conexao = sqlite3.connect("sweetcake.db")
     cursor = conexao.cursor()
