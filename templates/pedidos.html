@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pedidos | Sweet Cake</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8fb;
+            color: #684b55;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #b85f83;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitulo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .pedido {
+            background-color: white;
+            border: 1px solid #f0c9d9;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 650px;
+            box-shadow: 0 3px 8px rgba(184, 95, 131, 0.08);
+        }
+
+        .pedido h2 {
+            color: #b85f83;
+            margin-top: 0;
+        }
+
+        .lista-produtos {
+            background-color: #fff8fb;
+            border-radius: 8px;
+            padding: 12px 12px 12px 35px;
+        }
+
+        .lista-produtos li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            color: #a74670;
+            border-top: 1px solid #f0c9d9;
+            padding-top: 12px;
+        }
+
+        .botao-voltar,
+        .botao-salvar {
+            display: inline-block;
+            background-color: #b85f83;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .botao-voltar {
+            margin: 10px 0 20px;
+        }
+
+        .botao-voltar:hover,
+        .botao-salvar:hover {
+            background-color: #984767;
+        }
+
+        .vazio {
+            text-align: center;
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            max-width: 500px;
+            margin: 30px auto;
+        }
+
+        .data {
+            color: #876d77;
+            font-size: 14px;
+        }
+
+        .area-status {
+            background-color: #fff8fb;
+            padding: 15px;
+            border: 1px solid #f0c9d9;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .area-status select {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 11px;
+            margin-top: 10px;
+            border: 1px solid #e5b6c9;
+            border-radius: 8px;
+            background-color: white;
+            color: #684b55;
+            font-size: 15px;
+        }
+
+        .botao-salvar {
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🧁 Pedidos da Sweet Cake</h1>
+
+    <p class="subtitulo">
+        Consulta e atualização dos pedidos realizados na loja.
+    </p>
+
+    <p style="text-align: center;">
+        <a href="/" class="botao-voltar">Voltar para a loja</a>
+    </p>
+
+    {% if pedidos %}
+
+        {% for pedido in pedidos %}
+
+            <div class="pedido">
+
+                <h2>Pedido nº {{ pedido[0] }}</h2>
+
+                <p>
+                    <strong>Cliente:</strong>
+                    {{ pedido[1] }}
+                </p>
+
+                <p>
+                    <strong>E-mail:</strong>
+                    {{ pedido[2] or "Não informado" }}
+                </p>
+
+                <p>
+                    <strong>Endereço:</strong>
+                    {{ pedido[3] }}
+                </p>
+
+                <p>
+                    <strong>Telefone:</strong>
+                    {{ pedido[4] }}
+                </p>
+
+                <p>
+                    <strong>Observações:</strong>
+                    {{ pedido[5] or "Nenhuma" }}
+                </p>
+
+                <h3>🧁 Produtos do pedido</h3>
+
+                {% if itens_por_pedido[pedido[0]] %}
+
+                    <ul class="lista-produtos">
+
+                        {% for item in itens_por_pedido[pedido[0]] %}
+
+                            <li>
+                                <strong>{{ item[0] }}</strong><br>
+
+                                Quantidade:
+                                {{ item[1] }} unidade(s)<br>
+
+                                Preço unitário:
+                                {{ "R$ %.2f"|format(item[2]) }}<br>
+
+                                Subtotal:
+                                {{ "R$ %.2f"|format(item[1] * item[2]) }}
+                            </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                {% else %}
+
+                    <p>Não há produtos registrados neste pedido.</p>
+
+                {% endif %}
+
+                <p class="total">
+                    Total do pedido:
+                    {{ "R$ %.2f"|format(pedido[6]) }}
+                </p>
+
+                <p class="data">
+                    <strong>Data do pedido:</strong>
+                    {{ pedido[7] }}
+                </p>
+
+                <div class="area-status">
+
+                    <p>
+                        <strong>Status atual:</strong>
+                        {{ pedido[8] }}
+                    </p>
+
+                    <form
+                        action="/atualizar_status/{{ pedido[0] }}"
+                        method="POST"
+                    >
+
+                        <label for="status-{{ pedido[0] }}">
+                            <strong>Alterar status do pedido:</strong>
+                        </label>
+
+                        <select
+                            id="status-{{ pedido[0] }}"
+                            name="status"
+                            required
+                        >
+                            <option
+                                value="Pedido recebido"
+                                {% if pedido[8] == "Pedido recebido" %}selected{% endif %}
+                            >
+                                Pedido recebido
+                            </option>
+
+                            <option
+                                value="Em preparo"
+                                {% if pedido[8] == "Em preparo" %}selected{% endif %}
+                            >
+                                Em preparo
+                            </option>
+
+                            <option
+                                value="Saiu para entrega"
+                                {% if pedido[8] == "Saiu para entrega" %}selected{% endif %}
+                            >
+                                Saiu para entrega
+                            </option>
+
+                            <option
+                                value="Entregue"
+                                {% if pedido[8] == "Entregue" %}selected{% endif %}
+                            >
+                                Entregue
+                            </option>
+                        </select>
+
+                        <button type="submit" class="botao-salvar">
+                            Salvar status
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="vazio">
+            <h2>Nenhum pedido cadastrado</h2>
+            <p>
+                Quando um cliente fizer um pedido,
+                ele aparecerá aqui.
+            </p>
+        </div>
+
+    {% endif %}
+
+    <p style="text-align: center;">
+        <a href="/" class="botao-voltar">Voltar para a loja</a>
+    </p>
+
+</body>
+
+</html>

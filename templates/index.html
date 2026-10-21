@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cupcakes Sweet Cake</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    
+    
+</head>
+<body>
+    <header>
+          
+        <div class="logo-container">
+    <img src="{{ url_for('static', filename='imagens/logo-sweetcake.png') }}"
+         alt="Logo Sweet Cake"
+         class="logo-sweetcake">
+</div>
+        
+        <p>Pequenos doces, grandes momentos</p>
+    </header>
+
+  
+
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#produtos">Cupcakes</a>
+        <a href="#carrinho">Meu carrinho</a>
+    </nav>
+
+    <main>
+        <section id="inicio" class="banner">
+            <h2>Seu momento mais doce começa aqui</h2>
+
+            <p>Escolha seus cupcakes favoritos e faça seu pedido</p>
+
+            <a href="#produtos" class="botao">comprar agora</a>
+    </section>
+
+    <section id="produtos">
+        <h2>Nossos Cupcakes</h2>
+
+        <div class="lista-produtos">
+            <div class="produto">
+                <div class="imagem-produto"><img src="{{ url_for('static', filename='imagens/cupcake-chocolate.jpeg') }}" alt="Cupcake de Chocolate" class="img-cupcake">
+            </div>
+
+            <h3>Cupcake de Chocolate</h3>
+
+
+            <p>Massa de chocolate com cobertura cremosa</p>
+
+            <p class="preco">R$ 8,00</p>
+
+            <button class="botao" onclick="adicionarAoCarrinho(1)">Adicionar ao carrinho </button>
+
+           </div>
+
+           <div class="produto">
+            <div class="imagem-produto"> <img src="{{ url_for('static', filename='imagens/cupcake-morango.jpeg') }}" alt="Cupcake de morango" class="img-cupcake"> </div>
+
+
+            <h3> Cupcake de morango</h3>
+
+            <p>Massa delicada com cobertura sabor morango</p>
+
+            <p class="preco">R$ 9,00 </p>
+
+            <button class="botao" onclick="adicionarAoCarrinho(2)">Adicionar ao carrinho</button>
+
+        </div>
+
+        <div class="produto"> <div class="imagem-produto">  <img src="{{ url_for('static', filename='imagens/cupcake-baunilha.jpeg') }}" alt="Cupcake de baunilha" class="img-cupcake"> </div>
+        
+        <h3>Cupcake de baunilha</h3>
+
+        <p>Massa de baunilha com cobertura especial </p>
+
+        <p class="preco">R$ 7,00</p>
+
+        <button class="botao" onclick="adicionarAoCarrinho(3)">Adcionar ao carrinho </button>
+       </div>
+
+       <div class="produto"> <div class="imagem-produto">  <img src="{{ url_for('static', filename='imagens/cupcake-pistache.jpeg') }}" alt="Cupcake de pistache" class="img-cupcake"> </div>
+        
+        <h3>Cupcake de pistache</h3>
+
+        <p>Massa leve com cobertura cremosa de pistache </p>
+
+        <p class="preco">R$ 10,00</p>
+
+        <button class="botao" onclick="adicionarAoCarrinho(4)">Adcionar ao carrinho </button>
+       </div>
+
+       <div class="produto"> <div class="imagem-produto">  <img src="{{ url_for('static', filename='imagens/cupcake-mirtilocomlimao.jpeg') }}" alt="Cupcake de mirtilo com limão" class="img-cupcake"> </div>
+        
+        <h3>Cupcake de mirtilo com limão</h3>
+
+        <p>Massa de mirtilo com cobertura cremosa de limão </p>
+
+        <p class="preco">R$ 9,00</p>
+
+        <button class="botao" onclick="adicionarAoCarrinho(5)">Adcionar ao carrinho </button>
+       </div>
+
+       <div class="produto"> <div class="imagem-produto">  <img src="{{ url_for('static', filename='imagens/cupcake-redvelvet.jpeg') }}" alt="Cupcake red velvet" class="img-cupcake"> </div>
+        
+        <h3>Cupcake red velvet</h3>
+
+        <p>Massa red velvet com cobertura de cream cheese </p>
+
+        <p class="preco">R$ 9,00</p>
+
+        <button class="botao" onclick="adicionarAoCarrinho(6)">Adcionar ao carrinho </button>
+       </div>
+
+       </div>
+
+    </section>
+      
+    <!--carrinho de compras-->
+    <section id="carrinho">
+        <h2>Meu carrinho</h2>
+
+        <div id="itens-carrinho"> 
+            <p>Seu carrinho está vazio</p>
+        </div>
+
+        <h3>Total: <span id="total">R$ 0,00</span>
+        </h3>
+
+        <button id="botao-finalizar" class="botao" onclick="mostrarFinalizacao()">Finalizar pedido</button>
+
+    </section>
+    <!--finalização do pedido-->
+    <section id="finalizacao">
+        <h2>Finalizar pedido</h2>
+
+        <form id="formulario-pedido">
+            <label for="nome">Seu nome:</label>
+
+            <input type="text" id="nome" required>
+
+            <label for="email">Seu e-mail:</label>
+
+            <input type="email" id="email" required>
+
+            <label for="endereco">Endereço de entrega:</label>
+
+            <input type="text" id="endereco" required>
+
+            <label for="telefone">Telefone para contato:</label>
+
+            <input type="tel" id="telefone" required>
+
+            <label for="observacoes">Obeservações do pedido:</label>
+            <textarea id="observacoes" rows="3"></textarea>
+
+            <button type="submit" class="botao"> Confirmar pedido</button>
+
+        </form>
+
+        <div id="confirmacao"></div>
+    </section>
+
+    </main>
+
+    <!--rodapé-->
+    <footer>
+        <p>&copy; 2026 Sweet Cake - Loja de Cupcakes</p>
+    </footer>
+
+    <!--codigo java-->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+
+</body>
+</html>

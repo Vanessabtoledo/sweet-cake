@@ -1,0 +1,341 @@
+/*====configurações gerais======*/
+* {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box; }
+    
+html { scroll-behavior: smooth;
+}
+
+body {
+    font-family: "segoe UI", arial, sans-serif;
+    background-color: #fff8fb;
+    color: #684b55;
+    line-height: 1.6;
+}
+
+/*==caeçalho==*/
+header {
+    background:linear-gradient(135deg, #fbe4ed, #f5c8dc);
+    text-align: center;
+    padding: 20px 20px;
+    border-bottom: 2px solid #edbfd2;
+}
+
+header .logo-container {
+    text-align: center;
+    margin: 0 auto 8px;}
+
+    header .logo-sweetcake {
+    width: 210px;
+    max-width: 80%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+
+header p {
+    color: #80576a;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+}
+
+/*=menu=*/
+nav {
+    background-color: #fff0f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    padding: 17px 15px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #f4d9e4;
+}
+
+nav a {
+    color: #a84f73;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #d17b9e;
+}
+
+/*==conteudo principal==*/
+main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 25px;
+}
+
+section {
+    margin-bottom: 55px;
+    scroll-margin-top: 20px;
+}
+
+section h2 {
+    color: #a94f75;
+    font-family: georgia, serif;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+
+}
+
+/*==banner principal*/
+.banner {
+    background: linear-gradient(135deg,#fff0f6,#f8d6e5, #fce9f0);
+    text-align: center;
+    padding: 80px 30px;
+    border-radius: 30px;
+    margin-top: 25px;
+    border: 1px solid #f1c4d7;
+    box-shadow: 0 8px 25px rgba(180, 100, 135, 0.10);
+}
+
+.banner h2 {
+    color: #a94f75;
+    font-family: georgia, serif;
+    font-size: 36px;
+    margin-bottom: 18px;
+}
+
+.banner p {
+    color: #80576a;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+/*botões*/
+.botao{
+    display: inline-block;
+    background: linear-gradient(135deg, #d783a4, #bd6489);
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    padding: 13px 28px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(180, 85, 125, 0.18);
+    transition: background 0.3s, transform 0.3s, box shadow 0.3s; 
+}
+
+.botao:hover {
+    background:linear-gradient(135deg, #bd6489,#a94f75);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(180, 85, 125,0.25);
+}
+
+/*=lista de produtos-*/
+.lista-produtos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 25px;
+}
+
+.produto {
+    background-color: #ffffff;
+    border: 1px solid #f3d9e4;
+    border-radius: 24px;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(180, 100, 135, 0.10);
+    transition: transform 0.3s, box-shadow 0.3s;
+
+}
+
+.produto:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(180, 100, 135, 0.17);
+}
+
+.imagem-produto {
+    width: 100%; 
+    height: 200px; 
+    background-color: #fff0f5; 
+    border-radius: 16px; 
+    margin-bottom: 18px; 
+    overflow: hidden; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; }
+
+    .img-cupcake { 
+        width: 100%; 
+        height: 100%; 
+        object-fit: contain; 
+        display: block; 
+        padding: 8px;
+
+}
+
+.produto h3 {
+    color: #a65376;
+    font-family: georgia,serif;
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.produto p {
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.produto .preco {
+    color: #b85f83;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.produto .botao {
+    width: 100%;
+}
+
+/*=carrinho=*/
+#carrinho {
+    background: linear-gradient(135deg, #fff0f6, #fce5ee);
+    border: 1px solid #f1cbdc;
+    border-radius: 26px;
+    padding: 30px;
+    box-shadow: 0 6px 20px rgba(180, 100, 135, 0.08);
+}
+
+#itens-carrinho {
+    background-color: #ffffff;
+    border: 1px solid #f5e0e9;
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 12px rgba(180, 100, 135, 0.06);
+}
+
+#carrinho h3 {
+    color: #a94f75;
+    text-align: right;
+    margin: 25px 0;
+    font-size: 25px;
+    font-family: georgia, serif;
+    padding-top: 15px;
+    border-top: 1px solid #f1cbdc;
+}
+
+#botao-finalizar {
+    display: block;
+    margin-left: auto;
+}
+
+/*finalização do pedido*/
+#finalizacao {
+    background: linear-gradient(135deg, #ffffff, #fff6fa); 
+    border: 1px solid #f1d3e0;
+    border-radius: 26px;
+    padding: 35px;
+    max-width: 700px;
+    margin: 0 auto 55px;
+    box-shadow: 0 8px 24px rgba(180, 100, 135, 0.09);
+}
+
+#formulario-pedido {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#formulario-pedido label {
+    color: #a65376;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#formulario-pedido input,
+#formulario-pedido textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #e8c8d6;
+    border-radius: 12px;
+    background-color: #fffafd;
+    color: #684b55;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#formulario-pedido input:focus,
+#formulario-pedido textarea:focus {
+    outline:none;
+    border-color: #d783a4;
+    box-shadow: 0 0 0 3px rgba(215, 131, 164, 0.15);
+}
+
+#formulario-pedido textarea {
+    resize: vertical;
+}
+
+#formulario-pedido button{
+    margin-top: 20px;
+}
+
+/*confirmação*/
+#confirmacao {
+    margin-top: 20px;
+    color: #56805c;
+    font-weight: bold;
+}
+
+/*rodapé*/
+footer {
+    background: linear-gradient(135deg, #fbe4ed, #f5c8dc); 
+    color: #80576a;
+    text-align: center;
+    padding: 15px 15px;
+    border-top: 2px solid #edbfd2;
+    margin-top: 30px;
+}
+
+footer p {
+    font-size:14px;
+    letter-spacing: 0.4px;
+}
+
+@media (max-width:768px) {
+
+header h1{
+    font-size: 34px;
+}
+
+nav {
+    gap:18px
+}
+
+main {
+    padding: 15px;
+}
+
+.banner {
+    padding: 40px 20px;
+}
+
+.banner h2 {
+    font-size: 27px;
+}
+
+.lista-produtos {
+    grid-template-columns: 1fr;
+}
+
+#carrinho,
+#finalizacao {
+    padding: 20px;
+}
+}
+
+

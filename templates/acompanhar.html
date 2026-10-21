@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Acompanhar pedido | Sweet Cake</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8fb;
+            color: #684b55;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            border: 1px solid #f0c9d9;
+            border-radius: 12px;
+            padding: 25px;
+            max-width: 450px;
+            margin: 50px auto;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(184, 95, 131, 0.08);
+        }
+
+        h1 {
+            color: #b85f83;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #e5b6c9;
+            border-radius: 8px;
+        }
+
+        button, .botao {
+            display: inline-block;
+            background-color: #b85f83;
+            color: white;
+            border: none;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        button:hover, .botao:hover {
+            background-color: #984767;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🧁 Acompanhar meu pedido</h1>
+
+        <p>Informe o número do pedido recebido após a compra.</p>
+
+        <form action="/acompanhar" method="GET">
+            <label for="pedido_id">Número do pedido:</label>
+
+            <input
+                type="number"
+                id="pedido_id"
+                name="pedido_id"
+                min="1"
+                required
+            >
+
+            <button type="submit">Consultar pedido</button>
+        </form>
+
+        {% if erro %}
+    <p role="alert">{{ erro }}</p>
+
+{% elif consultou %}
+    {% if pedido %}
+        <div>
+            <h2>Pedido nº {{ pedido[0] }}</h2>
+
+            <p>
+                <strong>Status:</strong>
+                {{ pedido[1] }}
+            </p>
+
+            <p>Obrigada por escolher a Sweet Cake! 🧁💗</p>
+        </div>
+    {% else %}
+        <p role="alert">
+            Não encontramos um pedido com esse número.
+        </p>
+    {% endif %}
+{% endif %}
+
+        <p>
+            <a href="/" class="botao">Voltar para a loja</a>
+        </p>
+    </div>
+
+</body>
+</html>
